@@ -18,6 +18,7 @@ pkgs.mkShell {
     ripgrep
     fd
     nodejs
+    lazygit
   ];
 
   shellHook = ''
