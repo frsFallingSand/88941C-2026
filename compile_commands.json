@@ -1,0 +1,40 @@
+[
+  {
+    "file": "src/main.cpp",
+    "arguments": [
+      "arm-none-eabi-g++",
+      "-c",
+      "-iquote./include",
+      "-iquote./include/./",
+      "-mcpu=cortex-a9",
+      "-mfpu=neon-fp16",
+      "-mfloat-abi=hard",
+      "-Os",
+      "-g",
+      "-mthumb",
+      "-D_POSIX_THREADS",
+      "-D_UNIX98_THREAD_MUTEX_ATTRIBUTES",
+      "-D_POSIX_TIMERS",
+      "-D_POSIX_MONOTONIC_CLOCK",
+      "-D_PROS_INCLUDE_LIBLVGL_LLEMU_H",
+      "-D_PROS_INCLUDE_LIBLVGL_LLEMU_HPP",
+      "-Wno-psabi",
+      "-ffunction-sections",
+      "-fdata-sections",
+      "-fdiagnostics-color",
+      "-funwind-tables",
+      "--std=gnu++26",
+      "-MT",
+      "bin/main.cpp.o",
+      "-MMD",
+      "-MP",
+      "-MF",
+      ".d/main.Td",
+      "-o",
+      "bin/main.cpp.o",
+      "src/main.cpp"
+    ],
+    "directory": "/home/fgsd/pros",
+    "output": "bin/main.cpp.o"
+  }
+]
