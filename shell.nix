@@ -8,8 +8,6 @@ pkgs.mkShell {
     python3
     clang
     clang-tools
-    bear
-    compdb
     neovim-unwrapped
     fish
 
