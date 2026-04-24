@@ -4,7 +4,7 @@
 
 pkgs.mkShell {
   buildInputs = with pkgs; [
-    gcc-arm-embedded
+    gcc-arm-embedded-13
     python3
     clang
     clang-tools

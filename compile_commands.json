@@ -23,7 +23,7 @@
       "-fdata-sections",
       "-fdiagnostics-color",
       "-funwind-tables",
-      "--std=gnu++26",
+      "--std=gnu++20",
       "-MT",
       "bin/main.cpp.o",
       "-MMD",
