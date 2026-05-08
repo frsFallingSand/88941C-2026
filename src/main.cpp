@@ -1,8 +1,12 @@
 #include "main.h"
+#include "pros/llemu.hpp"
+#include "pros/rtos.h"
+#include "robot-cfg.h"
+#include <string>
 
 void initialize() {
     pros::lcd::initialize();
-    pros::lcd::set_text(1, "Hello Linux User!");
+    pros::lcd::set_text(1, "Hello User!");
 }
 
 /**
@@ -50,30 +54,15 @@ void autonomous() {}
  * task, not resume it from where it left off.
  */
 void opcontrol() {
-    pros::lcd::set_text(3, "opcontrol");
+    pros::c::delay(3000);
+    c.setPose(0, 0, 0);
+    std::string a;
 
-    pros::Controller master(pros::E_CONTROLLER_MASTER);
-    pros::MotorGroup left_mg(
-        {14, 15, 16}); // Creates a motor group with forwards ports 1 & 3 and
-                       // reversed port 2
-    pros::MotorGroup right_mg(
-        {18, 19, 20}); // Creates a motor group with forwards port 5 and
-                       // reversed ports 4 & 6
+    a = std::to_string(imu.get_rotation());
+    pros::lcd::set_text(1, a);
 
-    while (true) {
-        pros::lcd::print(0, "%d %d %d",
-                         (pros::lcd::read_buttons() & LCD_BTN_LEFT) >> 2,
-                         (pros::lcd::read_buttons() & LCD_BTN_CENTER) >> 1,
-                         (pros::lcd::read_buttons() & LCD_BTN_RIGHT) >>
-                             0); // Prints status of the emulated screen LCDs
+    c.turnToHeading(90, 1000, {}, false);
 
-        // Arcade control scheme
-        int dir = master.get_analog(
-            ANALOG_LEFT_Y); // Gets amount forward/backward from leftjoystick
-        int turn = master.get_analog(
-            ANALOG_RIGHT_X); // Gets the turn left/right from right joystick
-        left_mg.move(dir - turn);  // Sets left motor voltage
-        right_mg.move(dir + turn); // Sets right motor voltage
-        pros::delay(20);           // Run for 20 ms then update
-    }
+    a = std::to_string(imu.get_rotation());
+    pros::lcd::set_text(2, a);
 }
